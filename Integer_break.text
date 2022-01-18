@@ -1,0 +1,30 @@
+class Solution {
+    int map[];
+    public int integerBreak(int n) {
+        if(n == 2)return 1;
+        if(n==3)return 2;
+       map  = new int[n+1];
+        map[1] = 1;
+        map[2] =2 ;
+        
+    
+        return ans(n);
+    }
+    public int ans(int n){
+        if(n == 0)return 1;
+        if(map[n]!=0)return map[n];
+        int biggest = Integer.MIN_VALUE;
+        for(int i = 1;i<=3;i++){
+            if(n-i>0){
+            int cur = ans(n-i);
+            if(cur*i>biggest)biggest = cur*i;
+            }
+            
+        }
+        if(biggest<n)map[n] = n;
+        else{
+        map[n] =  biggest;
+        }
+        return map[n];
+    }
+}
