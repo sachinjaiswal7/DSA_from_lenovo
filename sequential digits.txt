@@ -1,0 +1,33 @@
+class Solution {
+    public List<Integer> sequentialDigits(int low, int high) {
+     List<Integer>ans = new ArrayList<>();
+        int first = 1;
+       
+        Map<Integer,Integer>map = new HashMap<>();
+        map.put(2,11);
+        map.put(3,111);
+        map.put(4,1111);
+        map.put(5,11111);
+        map.put(6,111111);
+        map.put(7,1111111);
+        map.put(8,11111111);
+        
+        
+        for(int i =2;i<=9;i++){
+            first = (first*10) + i;
+            if(first>=low && first<=high){
+            ans.add(first);
+            }
+            int num = first;
+            while(num%10 !=9){
+                num += map.get(i);
+                if(num>=low && num<=high){
+                ans.add(num);
+                }
+            }
+            
+        }
+       
+        return ans;
+    }
+}
