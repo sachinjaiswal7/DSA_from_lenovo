@@ -1,0 +1,42 @@
+class Solution {
+    public String removeKdigits(String num, int k) {
+        boolean[]removed = new boolean[num.length()];
+        char[]arr = num.toCharArray();
+        for(int i =1;i<arr.length;i++){
+            if(arr[i]<arr[i-1] && k>0){
+                removed[i-1] = true;
+                k--;
+                int j = i-1;
+                while(j>=0 && (removed[j] == true  || (arr[j]>arr[i] && k>0))){
+                    if(removed[j]!=true){
+                        removed[j] = true;
+                        k--;
+                    }
+                    j--;
+                }
+               
+                
+            }
+        }
+        if(k>0){
+            int i = arr.length-1;
+            while(k>0) {
+                if(removed[i] == false){
+                    k--;
+                    removed[i] = true;
+                }
+                i--;
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for(int i =0;i<arr.length;i++){
+            if(removed[i] == false){
+                if(arr[i] == '0' && sb.length() ==0)continue;
+                else{
+                    sb.append(arr[i]);
+                }
+            }
+        }
+        return (sb.length() == 0)?"0":sb.toString();
+    }
+}
